@@ -152,41 +152,64 @@ Chaos тестийн бүрэн output:
 Холбогдох screenshot:
 
 `screenshots/07-chaos.png`
+## 7. Error Budget
 
-## 7. Error budget
+### Request-based Error Budget
 
-Availability SLO нь 90% гэж үзвэл зөвшөөрөгдөх failure budget нь 10%.
+Availability SLO нь 90% тул нийт request/check-ийн 10%-ийг failure budget гэж үзнэ.
 
-Chaos тестийн нийт 5679 хүсэлтээс зөвшөөрөгдөх хамгийн их failure:
+Chaos test-ийн нийт request/check:
 
-```text
-5679 × 0.10 = 567.9 ≈ 568 requests
-```
+5679
+
+Зөвшөөрөгдөх failure:
+
+5679 × 10% = 567.9 ≈ 568 failures
 
 Бодит failure:
 
-```text
-698 requests
-```
+698 failures
 
-Иймээс chaos тестийн failure нь зөвшөөрөгдөх error budget-оос:
+Иймээс:
 
-```text
-698 - 568 = 130 requests
-```
+- Allowed failures: ≈568
+- Actual failures: 698
+- Excess failures: 698 - 568 = 130
+- Actual failure rate: 12.29%
+- Request-based availability: 87.71%
 
--аар их байсан.
+Request-based тооцоогоор availability SLO хангагдаагүй.
 
-Хувиар:
+### Time-based Error Budget
 
-```text
-Actual failure rate = 12.29%
-Allowed failure rate = 10.00%
+2 минутын тестийн нийт хугацаа:
 
-12.29% - 10.00% = 2.29 percentage points
-```
+120 секунд
 
-Иймээс серверийн 10 секундийн outage нь тухайн туршилтын request-based availability SLO-г хангаагүй.
+Availability SLO = 90% тул зөвшөөрөгдөх downtime:
+
+120 × 10% = 12 секунд
+
+Chaos test-ийн үед серверийг 10 секунд зориуд зогсоосон.
+
+- Total test time: 120 секунд
+- Allowed downtime: 12 секунд
+- Actual downtime: 10 секунд
+- Remaining time budget: 2 секунд
+- Time-based availability:
+
+(120 - 10) / 120 × 100 = 91.67%
+
+Time-based тооцоогоор 90%-ийн availability SLO хангагдсан байна.
+
+### Comparison
+
+| Арга | Нийт хэмжээ | Allowed budget | Actual | Availability |
+|---|---:|---:|---:|---:|
+| Request-based | 5679 requests/checks | ≈568 failures | 698 failures | 87.71% |
+| Time-based | 120 секунд | 12 sec downtime | 10 sec | 91.67% |
+
+Эдгээр хоёр арга өөр үр дүн өгч байна. Time-based арга нь зөвхөн серверийн downtime-ийг хэмждэг бол request-based арга нь тухайн хугацаанд амжилтгүй болсон request/check-үүдийг тооцдог. Chaos test-ийн үед сервер зогссоны улмаас connection refused болсон олон request/check үүссэн тул request-based availability нь time-based availability-ээс бага гарсан.
 
 ## 8. Deliberate FAIL тест
 
