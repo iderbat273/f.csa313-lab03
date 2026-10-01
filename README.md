@@ -213,7 +213,7 @@ Time-based тооцоогоор 90%-ийн availability SLO хангагдсан
 
 ## 8. Deliberate FAIL тест
 
-Threshold-ийн failure behavior-ийг шалгахын тулд тусдаа `fail-test.js` файл ашигласан.
+Threshold-ийн failure behavior-ийг шалгахын тулд тусдаа `slo-test-fail.js` файл ашигласан.
 
 Энэ тестэд зориудаар:
 
@@ -226,7 +226,7 @@ http_req_duration{name:report}: p(95)<100ms
 Тестийн үр дүн:
 
 ```text
-p(95)=388.36ms
+p(95)=376.2ms
 ```
 
 байсан бөгөөд:
@@ -251,7 +251,7 @@ Deliberate FAIL тестийн бүрэн output:
 
 Холбогдох screenshot:
 
-`screenshots/08-fail.png`
+`screenshots/09-fail-full-threshold.png`
 
 ## 9. Тестийн нотолгоо
 
@@ -262,7 +262,7 @@ Deliberate FAIL тестийн бүрэн output:
 3. `screenshots/05-scenarios-slo.png` — Scenario болон SLO хүснэгт
 4. `screenshots/06-pass.png` — PASS тестийн threshold үр дүн
 5. `screenshots/07-chaos.png` — Chaos тестийн threshold failure
-6. `screenshots/08-fail.png` — Deliberate FAIL болон non-zero exit code
+6. `screenshots/09-fail-full-threshold.png` — Deliberate FAIL болон non-zero exit code
 
 Бүрэн k6 output-ууд:
 
