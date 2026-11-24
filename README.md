@@ -226,7 +226,7 @@ http_req_duration{name:report}: p(95)<100ms
 Тестийн үр дүн:
 
 ```text
-p(95)=376.2ms
+p(95)=392.25ms
 ```
 
 байсан бөгөөд:
@@ -240,7 +240,7 @@ threshold зөрчигдсөн.
 k6-ийн exit code:
 
 ```text
-K6_EXIT_CODE=99
+exit=99
 ```
 
 гарсан нь threshold failure үед k6 non-zero exit code буцааж байгааг харуулсан.
@@ -251,7 +251,7 @@ Deliberate FAIL тестийн бүрэн output:
 
 Холбогдох screenshot:
 
-`screenshots/09-fail-full-threshold.png`
+`screenshots/10-fail-verified.png`
 
 ## 9. Тестийн нотолгоо
 
@@ -262,7 +262,7 @@ Deliberate FAIL тестийн бүрэн output:
 3. `screenshots/05-scenarios-slo.png` — Scenario болон SLO хүснэгт
 4. `screenshots/06-pass.png` — PASS тестийн threshold үр дүн
 5. `screenshots/07-chaos.png` — Chaos тестийн threshold failure
-6. `screenshots/09-fail-full-threshold.png` — Deliberate FAIL болон non-zero exit code
+6. `screenshots/10-fail-verified.png` — Deliberate FAIL болон non-zero exit code
 
 Бүрэн k6 output-ууд:
 
